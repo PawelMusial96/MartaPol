@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MartaPol.App.Views.SheetsPage" Title="Arkusze">
+    <Grid RowDefinitions="Auto, *">
+        <HorizontalStackLayout Spacing="8" Padding="0,0,0,8">
+            <SearchBar Placeholder="Szukaj" Text="{Binding Query}" SearchCommand="{Binding RefreshCommand}"/>
+            <DatePicker Date="{Binding FromDate}"/>
+            <DatePicker Date="{Binding ToDate}"/>
+            <Button Text="Odśwież" Command="{Binding RefreshCommand}"/>
+        </HorizontalStackLayout>
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Sheets}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="8" ColumnDefinitions="*,Auto,Auto">
+                        <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                        <Button Grid.Column="1" Text="Podgląd" Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.PreviewCommand}" CommandParameter="{Binding .}"/>
+                        <Button Grid.Column="2" Text="Eksport" Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ExportCommand}" CommandParameter="{Binding .}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

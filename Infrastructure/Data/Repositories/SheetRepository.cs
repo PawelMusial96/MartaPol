@@ -1,0 +1,1 @@
+namespace MartaPol.Infrastructure.Data.Repositories { public class SheetRepository : RepositoryBase {} }

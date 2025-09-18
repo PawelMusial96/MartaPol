@@ -1,0 +1,1 @@
+namespace MartaPol.Infrastructure.Data.Repositories { public class ScanRecordRepository : RepositoryBase {} }

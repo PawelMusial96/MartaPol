@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MartaPol.App": {
+      "commandName": "Project",
+      "hotReloadEnabled": false
+    }
+  }
+}

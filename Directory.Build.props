@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <!-- krótki obj poza OneDrive/Profil -->
+    <!--<BaseIntermediateOutputPath>C:\_obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>-->
+
+	  <BaseIntermediateOutputPath>$(SolutionDir).obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+	  <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+
+  </PropertyGroup>
+</Project>

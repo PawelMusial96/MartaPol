@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MartaPol.App.Views.SettingsPage" Title="Ustawienia">
+  <ScrollView>
+  <VerticalStackLayout Spacing="12" Padding="8">
+    <Label Text="Motyw" />
+    <Picker ItemsSource="{Binding Themes}" SelectedItem="{Binding Theme}" />
+
+    <Label Text="SMTP" FontAttributes="Bold" />
+    <Entry Placeholder="Host" Text="{Binding Model.SmtpHost}" />
+    <Entry Placeholder="Port" Keyboard="Numeric" Text="{Binding Model.SmtpPort}" />
+    <Picker Title="Szyfrowanie" ItemsSource="{Binding Encryptions}" SelectedItem="{Binding Model.SmtpEncryption}" />
+    <Entry Placeholder="Login (From)" Text="{Binding Model.SmtpUser}" />
+    <Entry Placeholder="Hasło (niezapisane wprost)" IsPassword="True" Text="{Binding SmtpPassword}" />
+    <Entry Placeholder="Odbiorca (To)" Text="{Binding Model.Recipient}" />
+
+    <Label Text="Zachowanie" FontAttributes="Bold" />
+    <Picker Title="Duplikaty" ItemsSource="{Binding DuplicatePolicies}" SelectedItem="{Binding SelectedDuplicatePolicy}" />
+    <Grid ColumnDefinitions="*,*">
+      <Switch IsToggled="{Binding Model.Beep}" />
+      <Label Grid.Column="0" Text="Dźwięk" VerticalTextAlignment="Center"/>
+      <Switch Grid.Column="1" IsToggled="{Binding Model.Vibrate}" />
+      <Label Grid.Column="1" Text="Wibracja" VerticalTextAlignment="Center" />
+    </Grid>
+    <Entry Placeholder="Limit rekordów arkusza (0 = bez limitu)" Keyboard="Numeric" Text="{Binding Model.SheetRecordLimit}" />
+    <Picker Title="Eksport" ItemsSource="{Binding ExportFormats}" SelectedItem="{Binding SelectedExportFormat}" />
+
+    <Button Text="Zapisz" Command="{Binding SaveCommand}" />
+  </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

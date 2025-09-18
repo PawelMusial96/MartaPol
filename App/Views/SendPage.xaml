@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MartaPol.App.Views.SendPage" Title="Wysyłka">
+    <ScrollView>
+    <VerticalStackLayout Spacing="8">
+        <Label Text="Adres docelowy (z Ustawień):"/>
+        <Label Text="{Binding Recipient}" FontAttributes="Bold"/>
+        <Button Text="Wybierz arkusze" Command="{Binding PickSheetsCommand}"/>
+        <Label Text="{Binding Subject}"/>
+        <CollectionView ItemsSource="{Binding SelectedSheets}" HeightRequest="100">
+            <CollectionView.ItemTemplate>
+                <DataTemplate><Label Text="{Binding Name}"/></DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Podgląd maila" Command="{Binding PreviewMailCommand}"/>
+        <Button Text="Wyślij" Command="{Binding SendCommand}"/>
+        <Label Text="Log wysyłek:" FontAttributes="Bold"/>
+        <CollectionView ItemsSource="{Binding Logs}" HeightRequest="200">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto,*,Auto" Padding="4">
+                        <Label Text="{Binding SentAt, StringFormat='{0:yyyy-MM-dd HH:mm}'}"/>
+                        <Label Grid.Column="1" Text="{Binding Attachments}" LineBreakMode="TailTruncation"/>
+                        <Label Grid.Column="2" Text="{Binding Success, StringFormat='Sukces: {0}'}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

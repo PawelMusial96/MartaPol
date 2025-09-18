@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             xmlns:zx="clr-namespace:ZXing.Net.Maui;assembly=ZXing.Net.MAUI"
+             x:Class="MartaPol.App.Views.ScanPage"
+             Title="Skanowanie">
+    <!--<Grid>
+        <zxing:CameraBarcodeReaderView x:Name="cameraView"
+                                        IsDetecting="True"
+                                        BarcodesDetected="OnBarcodesDetected"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand">
+            <zxing:CameraBarcodeReaderView.Options>
+                <zxing:BarcodeReaderOptions
+                    Formats="EAN13, Code128"
+                    AutoRotate="true"
+                    TryHarder="true" />
+            </zxing:CameraBarcodeReaderView.Options>
+        </zxing:CameraBarcodeReaderView>-->
+
+    <Grid>
+        <zxing:CameraBarcodeReaderView x:Name="cameraView"
+                                       IsDetecting="True"
+                                       BarcodesDetected="OnBarcodesDetected"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="FillAndExpand">
+            <zxing:CameraBarcodeReaderView.Options>
+                <zx:BarcodeReaderOptions
+                    Formats="Ean13, Code128"
+                    AutoRotate="True"
+                    TryHarder="True" />
+            </zxing:CameraBarcodeReaderView.Options>
+        </zxing:CameraBarcodeReaderView>
+
+        <Border Stroke="{StaticResource Primary}" StrokeThickness="2" StrokeShape="RoundRectangle 24"
+                HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="250" HeightRequest="250"/> 
+
+        <VerticalStackLayout Padding="12" HorizontalOptions="End" VerticalOptions="Start">
+            <Frame BackgroundColor="#80000000" CornerRadius="12">
+                <CollectionView ItemsSource="{Binding LastFive}" WidthRequest="260">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="8" ColumnDefinitions="2*,*">
+                                <Label Text="{Binding Code}" FontAttributes="Bold" LineBreakMode="TailTruncation"/>
+                                <Label Grid.Column="1" Text="{Binding WeightKg, StringFormat='{0:F3} kg'}" HorizontalTextAlignment="End"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </VerticalStackLayout>
+
+        <Grid Padding="8" VerticalOptions="End" BackgroundColor="#66000000">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="{Binding SessionCount, StringFormat='Rekordy: {0}'}" TextColor="White"/>
+            <HorizontalStackLayout Grid.Column="1" Spacing="12">
+                <Button Text="Zakończ" Command="{Binding FinishSessionCommand}"/>
+                <Button Text="Pauza" Command="{Binding ToggleDetectingCommand}"/>
+            </HorizontalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>
